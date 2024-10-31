@@ -1,0 +1,20 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Bus Tracking">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <ContentView row="0">
+            <!-- Map View will be initialized in code-behind -->
+            <WebView id="mapView" src="{{ mapUrl }}" />
+        </ContentView>
+
+        <StackLayout row="1" class="p-4 bg-white">
+            <Label text="{{ currentStudent.name }}" class="text-xl font-bold" />
+            <Label text="{{ statusMessage }}" class="text-gray-600" />
+            <Button text="{{ isTracking ? 'Stop Tracking' : 'Start Tracking' }}"
+                    tap="{{ toggleTracking }}"
+                    class="{{ isTracking ? 'bg-red-500' : 'bg-green-500' }} text-white p-2 rounded" />
+        </StackLayout>
+    </GridLayout>
+</Page>

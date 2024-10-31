@@ -1,0 +1,53 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="EduSafe Dashboard" />
+    
+    <TabView selectedIndex="{{ selectedTab }}">
+        <!-- Parent/Teacher View -->
+        <TabViewItem title="Students">
+            <GridLayout rows="auto, *">
+                <ListView items="{{ students }}" row="1">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" class="p-2">
+                            <StackLayout col="0">
+                                <Label text="{{ name }}" class="text-lg font-bold" />
+                                <Label text="{{ grade }}" class="text-sm text-gray-500" />
+                            </StackLayout>
+                            <Button text="Track" tap="{{ $parent.onTrackStudent }}" 
+                                    class="bg-blue-500 text-white px-4 py-2 rounded" col="1" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+
+        <!-- Notifications Tab -->
+        <TabViewItem title="Notifications">
+            <ListView items="{{ notifications }}" class="list-group">
+                <ListView.itemTemplate>
+                    <StackLayout class="list-group-item p-2">
+                        <Label text="{{ title }}" class="font-bold" />
+                        <Label text="{{ message }}" textWrap="true" />
+                        <Label text="{{ timestamp }}" class="text-gray-500 text-sm" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </TabViewItem>
+
+        <!-- Settings Tab -->
+        <TabViewItem title="Settings">
+            <ScrollView>
+                <StackLayout class="p-4">
+                    <Label text="Notification Settings" class="text-xl font-bold mb-2" />
+                    <Switch checked="{{ pushNotificationsEnabled }}" />
+                    <Label text="Push Notifications" />
+                    
+                    <Label text="Account Settings" class="text-xl font-bold mt-4 mb-2" />
+                    <Button text="Update Profile" tap="{{ onUpdateProfile }}" 
+                            class="bg-blue-500 text-white" />
+                    <Button text="Logout" tap="{{ onLogout }}" 
+                            class="bg-red-500 text-white mt-2" />
+                </StackLayout>
+            </ScrollView>
+        </TabViewItem>
+    </TabView>
+</Page>

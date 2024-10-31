@@ -1,0 +1,35 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Academic Dashboard" />
+    
+    <TabView selectedIndex="{{ selectedTab }}">
+        <TabViewItem title="Grades">
+            <ListView items="{{ grades }}" class="grade-list">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" class="p-2">
+                        <StackLayout col="0">
+                            <Label text="{{ subject }}" class="text-lg font-bold" />
+                            <Label text="{{ type }}" class="text-sm text-gray-500" />
+                        </StackLayout>
+                        <Label text="{{ score }}/{{ maxScore }}" 
+                               class="text-lg {{ (score/maxScore >= 0.7) ? 'text-green-500' : 'text-red-500' }}"
+                               col="1" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </TabViewItem>
+
+        <TabViewItem title="Attendance">
+            <ListView items="{{ attendance }}" class="attendance-list">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="p-2">
+                        <Label text="{{ date | dateFormat }}" col="0" />
+                        <Label text="{{ status }}" 
+                               class="{{ status === 'present' ? 'text-green-500' : 'text-red-500' }}"
+                               col="1" />
+                        <Label text="{{ note }}" col="2" class="text-sm text-gray-500" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </TabViewItem>
+    </TabView>
+</Page>

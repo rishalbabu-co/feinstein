@@ -1,0 +1,21 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Messages" />
+    
+    <GridLayout rows="*, auto">
+        <ListView items="{{ messages }}" row="0" class="chat-list">
+            <ListView.itemTemplate>
+                <GridLayout columns="*" class="p-2">
+                    <StackLayout class="{{ senderId === currentUserId ? 'sent-message' : 'received-message' }}">
+                        <Label text="{{ content }}" textWrap="true" class="message-text" />
+                        <Label text="{{ timestamp | dateFormat }}" class="text-xs text-gray-500" />
+                    </StackLayout>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <GridLayout rows="auto" columns="*, auto" row="1" class="p-2 bg-white">
+            <TextField text="{{ messageText }}" hint="Type a message..." col="0" class="input" />
+            <Button text="Send" tap="{{ sendMessage }}" class="bg-blue-500 text-white p-2" col="1" />
+        </GridLayout>
+    </GridLayout>
+</Page>
